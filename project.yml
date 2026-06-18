@@ -1,0 +1,43 @@
+# Projet Xcode généré via XcodeGen (https://github.com/yonaskolb/XcodeGen).
+# Choix assumé : le pbxproj écrit à la main est fragile ; un manifeste YAML est
+# reproductible et lisible. Générer le projet :  `xcodegen generate`
+# (à exécuter sur macOS — voir docs/status.md pour l'état de validation).
+name: ClavierFR
+options:
+  bundleIdPrefix: com.clavierfr
+  deploymentTarget:
+    iOS: "15.0"
+
+packages:
+  SharedCore:
+    path: .
+
+targets:
+  ClavierFR:
+    type: application
+    platform: iOS
+    sources:
+      - App/Sources
+    info:
+      path: App/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clavierfr.app
+        CODE_SIGN_ENTITLEMENTS: App/ClavierFR.entitlements
+    dependencies:
+      - package: SharedCore
+      - target: Keyboard
+
+  Keyboard:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Keyboard/Sources
+    info:
+      path: Keyboard/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clavierfr.app.keyboard
+        CODE_SIGN_ENTITLEMENTS: Keyboard/Keyboard.entitlements
+    dependencies:
+      - package: SharedCore

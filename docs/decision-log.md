@@ -42,6 +42,20 @@
 - **Conséquences** : produit utile sans Full Access ; bonus si activé.
 - **Statut** : acceptée (cadrage).
 
+### D6 — SharedCore en Swift Package autonome + XcodeGen pour l'app/extension
+- **Date** : 2026-06-18
+- **Décision** : SharedCore est un Swift Package à la racine (`swift test` sans
+  Xcode) ; l'app et l'extension sont décrites dans `project.yml` (XcodeGen) qui
+  génère le `.xcodeproj` (non versionné).
+- **Contexte** : environnement Linux sans Xcode (PROB-001) ; besoin de pouvoir
+  valider la logique métier indépendamment d'un Mac ; le pbxproj manuel est
+  fragile.
+- **Alternatives** : pbxproj écrit à la main (fragile, illisible) ; tout en
+  cible Xcode (logique non testable hors macOS). Rejetées.
+- **Conséquences** : logique vérifiable partout via `swift test` ; génération du
+  projet iOS reproductible (`xcodegen generate`).
+- **Statut** : acceptée.
+
 ### D5 — Phase 0 bloquante avant implémentation lourde
 - **Date** : 2026-06-17
 - **Décision** : exécuter les POC H1–H6 avant de figer l'architecture du moteur

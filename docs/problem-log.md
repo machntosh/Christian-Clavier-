@@ -12,7 +12,24 @@
 
 ---
 
-_Aucun problème enregistré à ce stade (cadrage initial, avant implémentation)._
+### PROB-001
+- **Date** : 2026-06-18
+- **Issue liée** : ISSUE-101 / Phase 0
+- **Sévérité** : majeure
+- **Symptôme** : impossible de compiler ou d'exécuter le code Swift dans
+  l'environnement de développement.
+- **Contexte** : environnement d'exécution Linux, sans toolchain Swift ni Xcode.
+- **Hypothèse cause** : `swift` absent ; le paquet apt « swift » est le stockage
+  objet OpenStack, pas le langage ; `download.swift.org` bloqué par la politique
+  réseau (`host_not_allowed`).
+- **Correction tentée** : vérification toolchain (`which swift`, `swift
+  --version`), test réseau vers download.swift.org, recherche apt.
+- **Résultat** : aucune toolchain installable ici. Le code SharedCore a été
+  conçu comme Swift Package autonome pour être validé via `swift test` dès
+  qu'un Mac est disponible ; une relecture manuelle a été faite à la place.
+- **Statut** : contourné (validation `swift test` déléguée à l'environnement
+  macOS de l'utilisateur ; documenté dans status.md et README).
+
 
 <!--
 Gabarit à copier pour chaque nouvelle entrée :

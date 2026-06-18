@@ -1,10 +1,30 @@
 # Issues — Découpage en phases
 
-> Statut : v1 (cadrage). Aucune issue démarrée. En attente de validation du plan.
+> Statut : v2. Bootstrap (ISSUE-101) et cœur déterministe écrits (code non
+> compilé ici — voir PROB-001). Validation `swift test` déléguée à macOS.
 > Format par issue : ID · titre · phase · priorité · dépendances · description ·
 > acceptance criteria · validation commands · status.
 >
 > Statuts possibles : `todo` · `in-progress` · `blocked` · `done` · `dropped`.
+
+## Avancement réel (2026-06-18)
+
+> « code-écrit » = implémenté et relu, mais **pas compilé/testé ici** (PROB-001).
+> Passe en `done` après `swift test` vert sur macOS.
+
+| Issue | État réel | Note |
+|-------|-----------|------|
+| ISSUE-101 | code-écrit | Package SPM + project.yml XcodeGen + entitlements App Group |
+| ISSUE-102 | code-écrit | `SimpleKeyboardView` + frappe brute (plan 0) |
+| ISSUE-103 | code-écrit | `SuggestionBarView` branchée au moteur |
+| ISSUE-201 | code-écrit | pipeline déterministe + corpus de test (14 cas) |
+| ISSUE-202 | code-écrit | `Lexicon.contains` + index accents (seed data) |
+| ISSUE-203 | code-écrit | distance Damerau-Levenshtein bornée + tests |
+| ISSUE-301 | code-écrit | homophones haute précision (il+et/à) + tests |
+| ISSUE-401 | code-écrit | profils QC/FR/standard, registre préservé |
+| ISSUE-402 | code-écrit | whitelist/blacklist + AppGroupStore (POC-IPC logique) |
+| POC-FALLBACK | code-écrit | testé via `disabledLayerIDs` |
+| POC-MEM / POC-LAT / POC-BAR | bloqué | nécessitent device iOS (hors environnement) |
 
 ---
 
