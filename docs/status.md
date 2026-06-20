@@ -27,14 +27,23 @@ relus. Ils n'ont **pas pu être compilés ni testés** dans cet environnement
 - ⚠️ **Aucune validation par exécution** : `swift test` et build Xcode restent
   à lancer sur macOS. Tant que ce n'est pas vert, rien n'est déclaré « stable ».
 
-## Ce qui reste à faire côté utilisateur (macOS/Xcode requis)
+## Validation sans Mac (mise en place 2026-06-19)
 
-1. `swift test` — valider toute la logique SharedCore (devrait passer ; corriger
-   le cas échéant et consigner dans problem-log.md).
-2. `xcodegen generate` + build des cibles App/Keyboard dans Xcode.
-3. POC device **bloqués ici** : POC-MEM (mémoire/jetsam), POC-LAT (latence
-   réelle), POC-BAR (stress suggestion bar), POC-IPC (Full Access ON/OFF sur
-   device). Ce sont les preuves manquantes avant de déclarer la stabilité.
+L'utilisateur n'a pas de Mac (Xcode est macOS-only). La validation passe par
+**GitHub Actions** (`.github/workflows/ci.yml`), sans Mac local :
+
+1. `swift test` sur runner **Linux** — valide toute la logique SharedCore.
+2. `xcodegen generate` + build App/Keyboard pour simulateur sur runner
+   **macOS hébergé** — vérifie que les cibles iOS compilent.
+
+La logique SharedCore est aussi testable localement via la **toolchain Swift
+officielle pour Windows**. La soumission App Store finale exigera toujours
+macOS (option : cloud Mac — MacStadium / MacinCloud / EC2 Mac).
+
+POC device **toujours bloqués hors device réel** : POC-MEM (mémoire/jetsam),
+POC-LAT (latence réelle), POC-BAR (stress suggestion bar), POC-IPC (Full Access
+ON/OFF). Un simulateur ne mesure pas le seuil jetsam — ce sont les preuves
+restantes avant de déclarer la stabilité.
 
 ## Ce qui reste risqué / à abandonner
 

@@ -27,8 +27,11 @@
 - **Résultat** : aucune toolchain installable ici. Le code SharedCore a été
   conçu comme Swift Package autonome pour être validé via `swift test` dès
   qu'un Mac est disponible ; une relecture manuelle a été faite à la place.
-- **Statut** : contourné (validation `swift test` déléguée à l'environnement
-  macOS de l'utilisateur ; documenté dans status.md et README).
+- **Statut** : contourné. Mise à jour 2026-06-19 : l'utilisateur n'a pas de Mac
+  (Xcode étant macOS-only). Validation déléguée à **GitHub Actions**
+  (`.github/workflows/ci.yml`) — `swift test` sur runner Linux + build iOS sur
+  runner macOS hébergé, sans Mac local. La logique SharedCore peut aussi être
+  testée localement via la toolchain Swift officielle pour Windows.
 
 
 <!--
